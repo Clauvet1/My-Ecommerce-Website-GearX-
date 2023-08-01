@@ -1,9 +1,8 @@
 <?php include'includes/header.php' ?>
 <?php
-$_SESSION['username'] = "john";
-if(!isset($_SESSION['username'])){
-  echo "You are not loggedIn";
-}else{ 
+if(!isset($_SESSION['userName'])){
+  header("Location: signIn.php?You most logIn before accessing the site");
+}else{
   $num = 1;
   $sql = 'SELECT * FROM products WHERE id BETWEEN 13 AND 18;';
   $result = mysqli_query($conn, $sql);

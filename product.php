@@ -1,8 +1,7 @@
 <?php include'includes/header.php' ?>
 <?php
-$_SESSION['username'] = "john";
-if(!isset($_SESSION['username'])){
-  echo "You are not loggedIn";
+if(!isset($_SESSION['userName'])){
+  header("Location: signIn.php?You most logIn befor accessing the site");
 }else{ ?>
 
 
@@ -80,7 +79,8 @@ if(!isset($_SESSION['username'])){
                 $ResultCheck = mysqli_num_rows($result);
 
                 if($ResultCheck > 0){
-                    while($row = mysqli_fetch_assoc($result)){ ?>
+                  $count = 0;
+                    while($row = mysqli_fetch_assoc($result) AND $count < 4){ ?>
 
                     <div class="col-lg-3">
                         <div class="IMG_productsB mb-4">
@@ -89,7 +89,7 @@ if(!isset($_SESSION['username'])){
                         <h4><?= $row['product_name']?></h4>
                         <p><?= $row['price']?></p>
                     </div>
-                 <?php   }
+                 <?php $count+=1;  }
                 }?>
                 
                 </div>

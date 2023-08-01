@@ -1,9 +1,4 @@
-<?php include'includes/header.php' ?>
-<?php
-$_SESSION['username'] = "john";
-if(!isset($_SESSION['username'])){
-  echo "You are not loggedIn";
-}else{ ?>
+<?php include'includes/header.php'; ?>
 
 
 <body>
@@ -209,4 +204,3 @@ if(!isset($_SESSION['username'])){
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-<?php } ?>

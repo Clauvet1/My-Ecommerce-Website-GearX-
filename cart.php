@@ -1,9 +1,7 @@
-<?php include'includes/header.php' ?>
-<?php
-$_SESSION['username'] = "john";
-if(!isset($_SESSION['username'])){
-  echo "You are not loggedIn";
-}else{ ?>
+<?php include'includes/header.php';
+if(!isset($_SESSION['userName'])){
+    header("Location: signIn.php?You most logIn before accessing the site");
+  }else{ ?>
 
 
 <body>
