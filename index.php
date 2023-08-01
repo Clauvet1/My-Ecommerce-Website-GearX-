@@ -1,9 +1,5 @@
-<?php include'includes/header.php' ?>
-<?php
-$_SESSION['username'] = "john";
-if(!isset($_SESSION['username'])){
-  echo "You are not loggedIn";
-}else{ ?>
+<?php include'includes/header.php';
+?>
 <body>
     
         <div class="bg_top" id="Home">
@@ -520,8 +516,11 @@ if(!isset($_SESSION['username'])){
                 
               </div>
               
+              <?php
+              if($_SESSION['userName'] == "admin"){?>
+
               <div class="contact col-lg-6 col-md-12 col-sm-12 col-xs-12 m-2">
-                <h2>Welcome <?= $_POST['username']?></h2>
+                <h2>Welcome <?= $_SESSION['userName']?></h2>
                 <form class="form-control border-5 rounded-4  p-4 shadow-lg" action="includes/add_products.php" method="POST">
                   <input type="text" name="product_name" placeholder="Enter product name">
                   <input type="text" name="price" placeholder="Enter price eg..$97.21">
@@ -532,7 +531,7 @@ if(!isset($_SESSION['username'])){
                   <button class="submit" name="submit" type="submit">SAVE</button>
                 </form>
               </div>
-             
+              <?php }?>
             
               <?php include'includes/footer.php' ?>
               
@@ -540,4 +539,3 @@ if(!isset($_SESSION['username'])){
 
 </body>
 </html>
-<?php } ?>

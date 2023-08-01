@@ -10,7 +10,7 @@
                 </div>
                 <div class="input-group my-2">
                     <div class="input-group-prepend rounded-left"><div class="input-group-text rounded-0"><i class="bi bi-key-fill"></i></div></div>
-                    <input type="text" name="password"   placeholder="Enter Password">
+                    <input type="password" name="password"   placeholder="Enter Password">
                 </div>
                 <div class="d-flex justify-content-between">
                     <button type="submit" name="submit" class="btn btn-success btn-md">Submit</button>

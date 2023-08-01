@@ -27,9 +27,21 @@
                         <li class="nav-item">
                           <a class="nav-link" href="aboutUs.php">ABOUT US</a>
                         </li>
+                        <?php
+
+                        if(isset($_SESSION['userName'])){?>
                         <li class="nav-item">
-                          <a class="btn btn-warning" id="SignIn">SignIn</a>
+                          <form action="includes/logOut.php" method="POST">
+                          <button class="btn btn-warning" type="submit" name="submit">SignOut</button>
+                          </form>
                         </li>
+                        <?php }
+                        else{ ?>
+                         <li class="nav-item">
+                          <a class="btn btn-warning" href="signIn.php" id="SignIn">SignIn</a>
+                        </li>
+                      <?php  }?>
+
                       </ul>
                       
                     </div>

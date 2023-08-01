@@ -1,8 +1,6 @@
 <?php 
-session_start()
-?>
-
-<?php include'dbh.php' ?>
+session_start();
+include'dbh.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

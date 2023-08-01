@@ -100,13 +100,14 @@
                         if($resultCheck > 0){
                         while($row = mysqli_fetch_assoc($result))
                         {?>
-                        <div class="col-lg-4">
+                        <div class="col-lg-4" >
                         <div class="IMG_productsB mb-4">
                          <img class="img1_products" src="data:image/jpg;chartset=utf8;base64, <?php echo base64_encode($row['img']); ?>" alt="">
                       </div>
                       <h4><?= $row['product_name']?></h4>
                       <p><?= $row['price']?></p>
                       </div>
+                        
                      
                 <?php  }} ?>
                     
