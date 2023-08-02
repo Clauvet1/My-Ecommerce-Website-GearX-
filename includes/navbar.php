@@ -1,9 +1,8 @@
 
 <div class="bar">
             <div class="row">
-              <div class="company_name col-lg-1 col-md-1 px-2 col-sm-12 col-xs-12"><h1>GearX</h1></div>
-              <div class="n_bar col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                <nav class="navbar navbar-expand-md navbar-dark" aria-label="Fourth navbar example">
+              <div class="company_name col-lg-2 col-md-2 text-center col-sm-2 col-xs-2"><h1 class="pt-2">GearX</h1></div>
+                <nav class="navbar n_bar my-1 col-lg-7 col-md-9 col-sm-9 col-xs-1 navbar-expand-md navbar-dark" aria-label="Fourth navbar example">
                   <div class="container-fluid">
                     <a class="navbar-brand" href="index.php"><img style="width: 25px; margin-left: 9px;" src="images/home.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,13 +31,13 @@
                         if(isset($_SESSION['userName'])){?>
                         <li class="nav-item">
                           <form action="includes/logOut.php" method="POST">
-                          <button class="btn btn-warning" type="submit" name="submit">SignOut</button>
+                          <button class="btn btn-warning rounded-5" type="submit" name="submit">SignOut</button>
                           </form>
                         </li>
                         <?php }
                         else{ ?>
                          <li class="nav-item">
-                          <a class="btn btn-warning" href="signIn.php" id="SignIn">SignIn</a>
+                          <a class="btn btn-warning rounded-5" href="signIn.php" id="SignIn">SignIn</a>
                         </li>
                       <?php  }?>
 
@@ -47,6 +46,7 @@
                     </div>
                   </div>
                 </nav>
-              </div>
+             
+            
             </div>
           </div>
