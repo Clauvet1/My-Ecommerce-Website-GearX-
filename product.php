@@ -23,15 +23,15 @@ if(!isset($_SESSION['userName'])){
             </div>
            <div class="product_content">
             <div class="row">
-                <div class="col-lg-6 col-md-12">
-                    
-                <?php
+            <?php
                 $sql = 'SELECT * FROM products WHERE product_name = "Hammer Drill";';
                 $result = mysqli_query($conn, $sql);
                 $ResultCheck = mysqli_num_rows($result);
 
                 if($ResultCheck > 0){
                     while($row = mysqli_fetch_assoc($result)){ ?>
+
+                <div class="col-lg-6 col-md-11">
                     <div class="IMG_products">
                     <img class="img1_products" src="data:image/jpg;chartset=utf8;base64, <?php echo base64_encode($row['img']); ?>" alt="">
                     </div>
