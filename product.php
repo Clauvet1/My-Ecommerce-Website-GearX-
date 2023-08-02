@@ -24,7 +24,8 @@ if(!isset($_SESSION['userName'])){
            <div class="product_content">
             <div class="row">
             <?php
-                $sql = 'SELECT * FROM products WHERE product_name = "Hammer Drill";';
+                if(isset($_GET['product'])){
+                  $sql = "SELECT * FROM products WHERE id = '$product[id]';";
                 $result = mysqli_query($conn, $sql);
                 $ResultCheck = mysqli_num_rows($result);
 
@@ -47,6 +48,8 @@ if(!isset($_SESSION['userName'])){
                 </div>
                 <?php    }
                 }
+                }
+                
                 ?>
             </div>
 
