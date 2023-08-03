@@ -26,9 +26,8 @@
                                 <p class="text-info fs-5">You can email us and</p>
                                 <h2 class="text-info fs-5 mb-5">Follow us on</h2>
                                 <p class="socials">
-                                    <a href="https://github.com/Clauvet1" class="text-decoration-none text-white">
-                                        <img class="btnIMG rounded-circle p-2" src="images/github.png" alt=""></a> 
-                                      <a href="" class="text-decoration-none text-white"><img  class="btnIMG rounded-circle p-2"src="images/ig.png" alt=""></a>
+                                    <a href="https://github.com/Clauvet1" class="text-decoration-none text-white"><img class="btnIMG rounded-circle p-2" src="images/github.png" alt=""></a> 
+                                    <a href="" class="text-decoration-none text-white"><img  class="btnIMG rounded-circle p-2"src="images/ig.png" alt=""></a>
                                         <img class="btnIMG rounded-circle p-2" src="images/twitter.png" alt="">
                                         <img class="btnIMG rounded-circle p-2" src="images/linkein.png" alt="">
                                         <img class="btnIMG rounded-circle p-2" src="images/facebook.png" alt="">

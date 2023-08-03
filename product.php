@@ -25,14 +25,16 @@ if(!isset($_SESSION['userName'])){
             <div class="row">
             <?php
                 if(isset($_GET['product'])){
-                  $sql = "SELECT * FROM products WHERE id = '$product[id]';";
+                  $sql = "SELECT * FROM products WHERE id = $_GET[product];";
                 $result = mysqli_query($conn, $sql);
                 $ResultCheck = mysqli_num_rows($result);
 
                 if($ResultCheck > 0){
                     while($row = mysqli_fetch_assoc($result)){ ?>
 
-                <div class="col-lg-6 col-md-11">
+<form action="includes/manageProducts.php" method="POST">
+                      <div class="row">
+                      <div class="col-lg-6 col-md-11">
                     <div class="IMG_products">
                     <img class="img1_products" src="data:image/jpg;chartset=utf8;base64, <?php echo base64_encode($row['img']); ?>" alt="">
                     </div>
@@ -40,16 +42,45 @@ if(!isset($_SESSION['userName'])){
 
                 <div class="col-lg-6 col-md-12">
                     <h1><?= $row['product_name']?></h1>
-                    <h5><del>$650.45</del><?= $row['price']?></h5>
-                    <p><?= $row['description']?><br>
+                    <input type="text" value="<del>$650.45</del><?= $row['price']?>">
+                    <input type="text" name="Item_Name" value="<?= $row['description']?>">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam cumque quam tempore omnis tenetur sit consequuntur officia eligendi, voluptatem provident est eos sunt eaque, dolore autem in minus iure ex?</p>
-                
-                <button class="bg-black text-white p-2 rounded-1 px-4">ADD TO CART</button>
-                </div>
+                <button class="bg-black text-white p-3 rounded-3 text-decoration-none px-4" type="submit" name="app_product">ADD PRODUCT</button>
+                <!-- <a href="includes/manageProducts.php?id=<?php echo $row['id'];?>" class="bg-black text-white p-3 rounded-3 text-decoration-none px-4">ADD TO CART</a>   -->
+              </div>
+                      </div>
+               
+              </form>
                 <?php    }
                 }
-                }
-                
+                }else{
+                  $sql = "SELECT * FROM products WHERE id = 1";
+                $result = mysqli_query($conn, $sql);
+                $ResultCheck = mysqli_num_rows($result);
+
+                if($ResultCheck > 0){
+                    while($row = mysqli_fetch_assoc($result)){ ?>
+
+                    <form action="includes/manageProducts.php" method="POST">
+                      <div class="row">
+                      <div class="col-lg-6 col-md-11">
+                    <div class="IMG_products">
+                    <img class="img1_products" src="data:image/jpg;chartset=utf8;base64, <?php echo base64_encode($row['img']); ?>" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <h1><?= $row['product_name']?></h1>
+                    <input type="text" value="<del>$650.45</del><?= $row['price']?>">
+                    <input type="text" name="Item_Name" value="<?= $row['description']?>">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam cumque quam tempore omnis tenetur sit consequuntur officia eligendi, voluptatem provident est eos sunt eaque, dolore autem in minus iure ex?</p>
+                <button class="bg-black text-white p-3 rounded-3 text-decoration-none px-4" type="submit" name="app_product">ADD PRODUCT</button>
+                <!-- <a href="includes/manageProducts.php?id=<?php echo $row['id'];?>" class="bg-black text-white p-3 rounded-3 text-decoration-none px-4">ADD TO CART</a>   -->
+              </div>
+                      </div>
+               
+              </form>
+            <?php  }}}
                 ?>
             </div>
 
@@ -86,11 +117,12 @@ if(!isset($_SESSION['userName'])){
                     while($row = mysqli_fetch_assoc($result) AND $count < 4){ ?>
 
                     <div class="col-lg-3">
+                    <a class="text-decoration-none text-black" href="product.php?product=<?php echo $row['id']; ?>">
                         <div class="IMG_productsB mb-4">
                         <img class="img1_products" src="data:image/jpg;chartset=utf8;base64, <?php echo base64_encode($row['img']); ?>" alt="">
                      </div>
                         <h4><?= $row['product_name']?></h4>
-                        <p><?= $row['price']?></p>
+                        <p><?= $row['price']?></p></a>
                     </div>
                  <?php $count+=1;  }
                 }?>

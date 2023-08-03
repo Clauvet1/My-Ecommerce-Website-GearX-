@@ -101,7 +101,7 @@
                         while($product = mysqli_fetch_assoc($result))
                         {?>
                         <div class="col-lg-4" >
-                          <a class="text-decoration-none text-black" href="product.php?<?php echo $product['id']; ?>">
+                          <a class="text-decoration-none text-black" href="product.php?product=<?php echo $product['id']; ?>">
                         <div class="IMG_productsB mb-4">
                          <img class="img1_products" src="data:image/jpg;chartset=utf8;base64, <?php echo base64_encode($product['img']); ?>" alt="">
                       </div>

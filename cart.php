@@ -39,167 +39,38 @@ if(!isset($_SESSION['userName'])){
                         </tr>
                     </thead>
                     <tbody>
+
+                    <?php 
+                    if(isset($_SESSION['cart'])){
+                       
+
+                    foreach($_SESSION['cart'] as $key => $value){ ?>
+
                         <tr>
-                            <td>
+                            <td class="col-lg-5">
                                 <div class="row">
-                                    <div class="col-lg-3">
-                                        <img class="w-100" src="images/hammer drill.jpg" alt="">
+                                    <div class="col-lg-5">
+                                    <div class="IMG_productsD">
+                        <img class="img1_products" src="data:image/jpg;chartset=utf8;base64, <?php echo base64_encode($value['img']); ?>" alt="">
+                     </div>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi labore voluptatem ratione inventore corrupti, suscipit earum magni commodi. Ratione velit aliquid quidem praesentium architecto, quae illo eaque aut voluptas ut.</p>
-                                    </div>
+                                    <div class="col-lg-7">
+                                        <?= $value['Item_Name'];?>
+                                        </div>
                                 </div>
                             </td>
-                            <td>$600</td>
+                            <td><?=$value['Price']?></td>
                             <td>
                                 <div class="number1">
-                                    <span class="minus">-</span>
-                                    <input type="text" value="1"/>
-                                    <span class="plus">+</span>
+                                    <input class="text-center" type="number" value="<?=$value['Quantity']?>">
         
                                 </div>
                             </td>
                             <td><input type="text"></td>
-                            <td><input type="checkbox" name="p1" id="p1"></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        <img class="w-100" src="images/filler.jpg" alt="">
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi labore voluptatem ratione inventore corrupti, suscipit earum magni commodi. Ratione velit aliquid quidem praesentium architecto, quae illo eaque aut voluptas ut.</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>$600</td>
-                            <td>
-                                <div class="number1">
-                                    <span class="minus">-</span>
-                                    <input type="text" value="1"/>
-                                    <span class="plus">+</span>
-        
-                                </div>
-                            </td>
-                            <td><input type="text"></td>
-                            <td><input type="checkbox" name="p1" id="p1"></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        <img class="w-100" src="images/nails.jpg" alt="">
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi labore voluptatem ratione inventore corrupti, suscipit earum magni commodi. Ratione velit aliquid quidem praesentium architecto, quae illo eaque aut voluptas ut.</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>$600</td>
-                            <td>
-                                <div class="number1">
-                                    <span class="minus">-</span>
-                                    <input type="text" value="1"/>
-                                    <span class="plus">+</span>
-        
-                                </div>
-                            </td>
-                            <td><input type="text"></td>
-                            <td><input type="checkbox" name="p1" id="p1"></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        <img class="w-100" src="images/screwdriver.jpg" alt="">
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi labore voluptatem ratione inventore corrupti, suscipit earum magni commodi. Ratione velit aliquid quidem praesentium architecto, quae illo eaque aut voluptas ut.</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>$600</td>
-                            <td>
-                                <div class="number1">
-                                    <span class="minus">-</span>
-                                    <input type="text" value="1"/>
-                                    <span class="plus">+</span>
-        
-                                </div>
-                            </td>
-                            <td><input type="text"></td>
-                            <td><input type="checkbox" name="p1" id="p1"></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        <img class="w-100" src="images/spanners.jpg" alt="">
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi labore voluptatem ratione inventore corrupti, suscipit earum magni commodi. Ratione velit aliquid quidem praesentium architecto, quae illo eaque aut voluptas ut.</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>$600</td>
-                            <td>
-                                <div class="number1">
-                                    <span class="minus">-</span>
-                                    <input type="text" value="1"/>
-                                    <span class="plus">+</span>
-        
-                                </div>
-                            </td>
-                            <td><input type="text"></td>
-                            <td><input type="checkbox" name="p1" id="p1"></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        <img class="w-100" src="images/tape.jpg" alt="">
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi labore voluptatem ratione inventore corrupti, suscipit earum magni commodi. Ratione velit aliquid quidem praesentium architecto, quae illo eaque aut voluptas ut.</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>$600</td>
-                            <td>
-                                <div class="number1">
-                                    <span class="minus">-</span>
-                                    <input type="text" value="1"/>
-                                    <span class="plus">+</span>
-        
-                                </div>
-                            </td>
-                            <td><input type="text"></td>
-                            <td><input type="checkbox" name="p1" id="p1"></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        <img class="w-100" src="images/cordless Drill.jpg" alt="">
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi labore voluptatem ratione inventore corrupti, suscipit earum magni commodi. Ratione velit aliquid quidem praesentium architecto, quae illo eaque aut voluptas ut.</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>$600</td>
-                            <td>
-                                <div class="number1">
-                                    <span class="minus">-</span>
-                                    <input type="text" value="1"/>
-                                    <span class="plus">+</span>
-        
-                                </div>
-                            </td>
-                            <td><input type="text" id="total"></td>
-                            <td><input type="checkbox" name="p1" id="p1"></td>
-                        </tr>
+                            <td><button class="btn btn-sm text-sm btn-outline-danger">Remove</button></td>
+                            
+                        </tr><?php }}?>
+                        
                     </tbody>
                 </table>
                 <div class="box-shop text-center">
