@@ -35,39 +35,51 @@ if(!isset($_SESSION['userName'])){
                             <th class="bg-success text-white">Price</th>
                             <th class="bg-success text-white">Quantity</th>
                             <th class="bg-success text-white">Total</th>
-                            <th class="bg-success text-white">Select Item</th>
+                            <th class="bg-success text-white">Remove Item</th>
                         </tr>
                     </thead>
                     <tbody>
 
                     <?php 
                     if(isset($_SESSION['cart'])){
-                       
-
-                    foreach($_SESSION['cart'] as $key => $value){ ?>
-
+                    foreach($_SESSION['cart'] as $key => $values){ ?>
                         <tr>
                             <td class="col-lg-5">
                                 <div class="row">
                                     <div class="col-lg-5">
                                     <div class="IMG_productsD">
-                        <img class="img1_products" src="data:image/jpg;chartset=utf8;base64, <?php echo base64_encode($value['img']); ?>" alt="">
+                                    <?php $sql="SELECT img FROM products WHERE id = $values[id];";
+                                            $result = mysqli_query($conn, $sql);
+                                            if(mysqli_num_rows($result) > 0){
+                                                while($image = mysqli_fetch_assoc($result)){ ?>
+
+                                          
+                        <img class="img1_products" src="uploads/<?= $image['img']?>" alt="">
+                        <?php     }
+                                            }
+                                    ?>
                      </div>
-                                    </div>
+                       </div>
                                     <div class="col-lg-7">
-                                        <?= $value['Item_Name'];?>
+                                       <h5> <?= $values['product_name'];?></h5>
+                                        <?= $values['descr'];?>
                                         </div>
                                 </div>
                             </td>
-                            <td><?=$value['Price']?></td>
+                            <td>$<?= $values['Price']?><input  class="iprice" type="hidden" value="<?= $value['Price']?>"></td>
                             <td>
-                                <div class="number1">
-                                    <input class="text-center" type="number" value="<?=$value['Quantity']?>">
+                                <div class="">
+                                    <input class="iquantity text-center" onchange="subTotal()" type="number" min='1' max='10' value="<?=$values['Quantity']?>">
         
                                 </div>
                             </td>
-                            <td><input type="text"></td>
-                            <td><button class="btn btn-sm text-sm btn-outline-danger">Remove</button></td>
+                            <td class="itotal">$<?= $values['Price']*$values['Quantity']?></td>
+                            <td>
+                                <form action="includes/manageProducts.php" method="POST">
+                                <input type="hidden" name="product_id" value="<?= $values['id']?>">
+                                <button type="submit" name="Remove" class="btn btn-sm text-sm btn-outline-danger">Remove</button>
+                                </form>
+                            </td>
                             
                         </tr><?php }}?>
                         
@@ -76,13 +88,13 @@ if(!isset($_SESSION['userName'])){
                 <div class="box-shop text-center">
                     <div class="row">
                         <div class="col-lg-4">
-                            <button class="p-2 bg-success border-success text-white" type="submit" >UPDATE TOTALS</button>
+                            <button class="p-2 mb-1 bg-success border-success text-white" type="submit" >UPDATE TOTALS</button>
                         </div>
                         <div class="col-lg-4">
-                            <button class="p-2 border-danger" type="submit">UPDATE CART</button>
+                            <a class="btn btn-outline-danger rounded-0 mb-1 px-3 py-2 border-danger" href="shop_1.php">UPDATE CART</a>
                         </div>
                         <div class="col-lg-4">
-                            <button class="p-2 bg-danger border-danger text-white" type="submit"> <a class="text-white text-decoration-none" href="chechout.html">PREOCEED TO CHECKOUT</a> </button>
+                           <a class="btn btn-outline-danger py-2 rounded-0 text-decoration-none" href="checkout.php">PREOCEED TO CHECKOUT</a>
                         </div>
                     </div>
                 </div>
@@ -386,7 +398,26 @@ if(!isset($_SESSION['userName'])){
         <?php include'includes/footer.php' ?>
         
     </div>
+
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- <script>
+        // alert('hello world');
+        var iprice = document.getElementsByClassName('iprice');
+        var iquantity = document.getElementsByClassName('iquantity');
+        var itotal = document.getElementById('itotal');
+  
+        function subTotal(){
+            for(i=0; i<length.iprice; i++){
+               alert(itotal[i].innerText = (iprice[i].value)*(iquantity[i].value));
+            }
+        }
+
+        subTotal();
+
+    </script> -->
+
+   
 </body>
 </html>
 <?php } ?>

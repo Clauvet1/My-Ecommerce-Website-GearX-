@@ -16,10 +16,22 @@ if(!isset($_SESSION['userName'])){
               <?php include'includes/navbar.php' ?>
               
           <div class="cc">
+            <div class="row">
+            <div class="col-lg-9">
             <h1 class="H">PRODUCTS</h1>
           <p class="text-white mx-5 " id="cc">HOME<img class="mx-3"  src="images/right-arrow.png" alt=""> <span class="text-danger mx-1">PRODUCTS</span></p>
-        
-          </div>
+         </div>
+         <div class="col-lg-2 bg-white text-center rounded-5 pt-5">
+          <?php 
+          $count = 0;
+          if(isset($_SESSION['cart'])){
+            $count = count($_SESSION['cart']);
+          }
+          ?>
+          <a href="cart.php" class="btn btn-outline-success">My Cart <span class="text-info h5">(<?= $count?>)</span> </a>
+         </div>
+            </div>
+            </div>
             </div>
            <div class="product_content">
             <div class="row">
@@ -36,16 +48,22 @@ if(!isset($_SESSION['userName'])){
                       <div class="row">
                       <div class="col-lg-6 col-md-11">
                     <div class="IMG_products">
-                    <img class="img1_products" src="data:image/jpg;chartset=utf8;base64, <?php echo base64_encode($row['img']); ?>" alt="">
+                    <img class="img1_products" src="uploads/<?= $row['img']?>" alt="">
+                    <input type="hidden" name="image" value="uploads/<?= $row['img']?>">
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-md-12">
+                <div class="col-lg-6 col-md-11">
                     <h1><?= $row['product_name']?></h1>
-                    <input type="text" value="<del>$650.45</del><?= $row['price']?>">
-                    <input type="text" name="Item_Name" value="<?= $row['description']?>">
+                    <input type="hidden" name="product_name" value="<?= $row['product_name']?>">
+                    <h4><del>$650.45</del> $<?= $row['price']?></h4>
+                    <input type="hidden" name="price" value="<?= $row['price']?>">
+                    <input type="hidden" name="id" value="<?= $row['id']?>">
+                    <p><?= $row['p_description']?></p>
+                    <input type="hidden" name="descr" value="<?= $row['p_description']?>">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam cumque quam tempore omnis tenetur sit consequuntur officia eligendi, voluptatem provident est eos sunt eaque, dolore autem in minus iure ex?</p>
-                <button class="bg-black text-white p-3 rounded-3 text-decoration-none px-4" type="submit" name="app_product">ADD PRODUCT</button>
+                <p class="text-right w-100"><h4>Amount Left: <span><?=$row['quantity']?></span></h4></p>
+                <button class="bg-black text-white p-3 rounded-3 text-decoration-none px-4" type="hidden" name="add_product">ADD PRODUCT</button>
                 <!-- <a href="includes/manageProducts.php?id=<?php echo $row['id'];?>" class="bg-black text-white p-3 rounded-3 text-decoration-none px-4">ADD TO CART</a>   -->
               </div>
                       </div>
@@ -54,7 +72,7 @@ if(!isset($_SESSION['userName'])){
                 <?php    }
                 }
                 }else{
-                  $sql = "SELECT * FROM products WHERE id = 1";
+                  $sql = "SELECT * FROM products WHERE id = 12";
                 $result = mysqli_query($conn, $sql);
                 $ResultCheck = mysqli_num_rows($result);
 
@@ -63,18 +81,23 @@ if(!isset($_SESSION['userName'])){
 
                     <form action="includes/manageProducts.php" method="POST">
                       <div class="row">
-                      <div class="col-lg-6 col-md-11">
+                      <div class="col-lg-6 col-md-9 col-sm-9">
                     <div class="IMG_products">
-                    <img class="img1_products" src="data:image/jpg;chartset=utf8;base64, <?php echo base64_encode($row['img']); ?>" alt="">
+                    <img class="img1_products" src="uploads/<?= $row['img']?>" alt="">
+                    <input type="hidden" name="image" value="uploads/<?= $row['img']?>">
                     </div>
                 </div>
-
-                <div class="col-lg-6 col-md-12">
-                    <h1><?= $row['product_name']?></h1>
-                    <input type="text" value="<del>$650.45</del><?= $row['price']?>">
-                    <input type="text" name="Item_Name" value="<?= $row['description']?>">
+                      <div class="col-lg-6 col-md-11">
+                      <h1><?= $row['product_name']?></h1>
+                    <input type="hidden" name="product_name" value="<?= $row['product_name']?>">
+                    <h4><del>$650.45</del> $<?= $row['price']?></h4>
+                    <input type="hidden" name="price" value="<?= $row['price']?>">
+                    <input type="hidden" name="id" value="<?= $row['id']?>">
+                    <p><?= $row['p_description']?></p>
+                    <input type="hidden" name="descr" value="<?= $row['p_description']?>">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam cumque quam tempore omnis tenetur sit consequuntur officia eligendi, voluptatem provident est eos sunt eaque, dolore autem in minus iure ex?</p>
-                <button class="bg-black text-white p-3 rounded-3 text-decoration-none px-4" type="submit" name="app_product">ADD PRODUCT</button>
+                <p class="text-right w-100"><h4>Amount Left: <span><?=$row['quantity']?></span></h4></p>
+                <button class="bg-black text-white p-3 rounded-3 text-decoration-none px-4" type="hidden" name="add_product">ADD PRODUCT</button>
                 <!-- <a href="includes/manageProducts.php?id=<?php echo $row['id'];?>" class="bg-black text-white p-3 rounded-3 text-decoration-none px-4">ADD TO CART</a>   -->
               </div>
                       </div>
@@ -119,10 +142,10 @@ if(!isset($_SESSION['userName'])){
                     <div class="col-lg-3">
                     <a class="text-decoration-none text-black" href="product.php?product=<?php echo $row['id']; ?>">
                         <div class="IMG_productsB mb-4">
-                        <img class="img1_products" src="data:image/jpg;chartset=utf8;base64, <?php echo base64_encode($row['img']); ?>" alt="">
+                        <img class="img1_products" src="uploads/<?= $row['img']?>" alt="">
                      </div>
                         <h4><?= $row['product_name']?></h4>
-                        <p><?= $row['price']?></p></a>
+                        <p>$<?= $row['price']?></p></a>
                     </div>
                  <?php $count+=1;  }
                 }?>

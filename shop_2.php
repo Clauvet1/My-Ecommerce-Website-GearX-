@@ -4,7 +4,7 @@ if(!isset($_SESSION['userName'])){
   header("Location: signIn.php?You most logIn before accessing the site");
 }else{
   $num = 1;
-  $sql = 'SELECT * FROM products WHERE id BETWEEN 7 AND 12;';
+  $sql = 'SELECT * FROM products WHERE id BETWEEN 18 AND 23;';
   $result = mysqli_query($conn, $sql);
   $resultCheck = mysqli_num_rows($result);
   ?>

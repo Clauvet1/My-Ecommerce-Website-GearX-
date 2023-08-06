@@ -518,19 +518,20 @@
               
               <?php
               if($_SESSION['userName'] == "admin"){?>
-
-              <div class="contact col-lg-6 col-md-12 col-sm-12 col-xs-12 m-2">
-                <h2>Welcome <?= $_SESSION['userName']?></h2>
-                <form class="form-control border-5 rounded-4  p-4 shadow-lg" action="includes/add_products.php" method="POST">
+            
+              <div class="contact text-center col-lg-6 col-md-12 col-sm-12 col-xs-12 m-2">
+                
+                    <h2>Welcome Admin <span class="mx-3 text-success display-3"> <?= $_SESSION['first_name']?> <?= $_SESSION['last_name']?></span></h2>
+                <form class="form-control border-5 rounded-4  p-4 shadow-lg" action="includes/add_products.php" method="POST" enctype="multipart/form-data">
                   <input type="text" name="product_name" placeholder="Enter product name">
                   <input type="text" name="price" placeholder="Enter price eg..$97.21">
                   <input type="number" name="quantity" placeholder="Enter the quantity">
-                  <textarea name="descr" placeholder="Enter detailed Description about the product" cols="30" rows="10"></textarea>
-                  <input type="file" name="file">
+                  <textarea name="descr" placeholder="Enter detailed Description about the product" cols="77" rows="10"></textarea>
+                  <input type="file" name="img">
                   <br><br>
-                  <button class="submit" name="submit" type="submit">SAVE</button>
+                  <input class="submit" name="submit" type="submit" value="upload">
                 </form>
-              </div>
+                </div>
               <?php }?>
             
               <?php include'includes/footer.php' ?>

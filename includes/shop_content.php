@@ -103,10 +103,10 @@
                         <div class="col-lg-4" >
                           <a class="text-decoration-none text-black" href="product.php?product=<?php echo $product['id']; ?>">
                         <div class="IMG_productsB mb-4">
-                         <img class="img1_products" src="data:image/jpg;chartset=utf8;base64, <?php echo base64_encode($product['img']); ?>" alt="">
+                         <img class="img1_products" src="uploads/<?= $product['img']?>" alt="">
                       </div>
                       <h4><?= $product['product_name']?></h4>
-                      <p><?= $product['price']?></p></a>
+                      <p>$<?= $product['price']?></p></a>
                       </div>
                         
                      

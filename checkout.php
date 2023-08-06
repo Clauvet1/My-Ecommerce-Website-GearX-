@@ -14,9 +14,21 @@ if(!isset($_SESSION['userName'])){
         <?php include'includes/navbar.php' ?>
         
           <div class="cc">
+          <div class="row">
+            <div class="col-lg-9">
             <h1 class="H">CHECKOUT</h1>
-          <p class="text-white mx-5 " id="cc">HOME <img class="mx-3"  src="images/right-arrow.png" alt=""> <span class="text-danger mx-1">CHECKOUT</span></p>
-        
+          <p class="text-white mx-5 " id="cc">HOME<img class="mx-3"  src="images/right-arrow.png" alt=""> <span class="text-danger mx-1">CHECKOUT</span></p>
+         </div>
+         <div class="col-lg-2 bg-white text-center rounded-5 pt-5">
+          <?php 
+          $count = 0;
+          if(isset($_SESSION['cart'])){
+            $count = count($_SESSION['cart']);
+          }
+          ?>
+          <a href="cart.php" class="btn btn-outline-success">My Cart <span class="text-info h5">(<?= $count?>)</span></a>
+         </div>
+            </div>
           </div>
             </div>
             <div class="box_shop text-center mt-5">
@@ -25,7 +37,7 @@ if(!isset($_SESSION['userName'])){
                 <img src="images/5093064.png" width="40px" alt="">
             </div>
             <div class="box_checkout mt-5">
-                <form action="">
+                <form action="includes/address.php" method="POST">
                 <div class="row">
                     <div class="col-lg-6">
                         <h1 class="italics">Billing Address <img width="22px" src="images/175-1758167_orange-down-arrow-png-transparent-png.png" alt=""> </h1>
@@ -310,11 +322,11 @@ if(!isset($_SESSION['userName'])){
                        </div>
                        <div>
                         <label for="">Town/city</label>
-                        <input type="text" name="city" id="city">
+                        <input type="text" name="town" id="town">
                        </div>
                        <div>
                         <label for="">Postcode/Zipcode</label>
-                        <input type="text" name="past_code" id="post_code">
+                        <input type="text" name="post_code" id="post_code">
                        </div>
                        <div>
                         <label for="">Email Address</label>
@@ -322,7 +334,7 @@ if(!isset($_SESSION['userName'])){
                        </div>
                        <div>
                         <label for="">Phone</label>
-                        <input type="text" name="phone" id="phone">
+                        <input type="number" name="phone" id="phone">
                        </div>
                         
                     </div>
@@ -335,7 +347,7 @@ if(!isset($_SESSION['userName'])){
                             <label for="">Order Address</label>
                             <textarea class="p-2" name="order_address" id="order_address" cols="60" placeholder="Write a brief description of your order address" rows="5"></textarea>
                         </div>
-                        <button class="mt-3 px-5 border-danger bg-white p-2" type="submit">SAVE ADDREESS</button>
+                        <!-- <button class="mt-3 px-5 border-danger bg-white p-2" type="submit">SAVE ADDREESS</button> -->
                     </div>
                 </div>
                 <h4 class="my-5 italics">Your Orders<img width="22px" src="images/175-1758167_orange-down-arrow-png-transparent-png.png" alt=""> </h4>
@@ -377,7 +389,7 @@ if(!isset($_SESSION['userName'])){
                     <p>I have read and accepted the <span>Terms & Conditions</span></p>
                   </div>
                   <div class="col-lg-3">
-                    <button class="p-2 px-5 rounded-1 bg-danger border-danger text-white"  type="submit">PLACE ORDER</button>
+                    <button class="p-2 px-5 rounded-1 bg-danger border-danger text-white" name="submit" type="submit">PLACE ORDER</button>
                   </div>
                  </div>
                 </div>

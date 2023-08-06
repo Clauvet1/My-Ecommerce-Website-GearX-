@@ -2,10 +2,11 @@
 session_start();
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
-    if(isset($_POST['app_product'])){
+    if(isset($_POST['add_product'])){
         if(isset($_SESSION['cart'])){
-            $myitems = array_column($_SESSION['cart'], 'Item_Name');
-            if(in_array($_POST['Item_Name'], $myitems)){
+            $product_id = array_column($_SESSION['cart'], 'id');
+           
+            if(in_array($_POST['id'], $product_id)){
                 echo"<script>
                 alert('Item already added');
                 window.location.href='../shop_1.php';
@@ -13,40 +14,34 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             }
             else
             {
-            $count = count($_SESSION['cart']);
-            $_SESSION['cart'][$count] = array('Item_Name'=>$_POST['Item_Name'], 'Price'=>$_POST['Price'], 'Quantity'=>1);
-            echo"<script>
-                    alert('Item already added');
-                    window.location.href='../shop_1.php';
-                </script>";
+                $total = 1 * $_POST['price'];
+                $count = count($_SESSION['cart']);
+                $_SESSION['cart'][$count] = array('product_name'=>$_POST['product_name'], 'descr'=>$_POST['descr'], 'id'=>$_POST['id'], 'Price'=>$_POST['price'], 'Quantity'=>1);
+                echo"<script>
+                        alert('Item added successfuly');
+                        window.location.href='../cart.php';
+                    </script>";
             }
         }
         else
         {
-            $_SESSION['cart'][0] = array('Item_Name'=>$_POST['Item_Name'], 'Price'=>$_POST['Price'], 'Quantity'=>1);
+            $_SESSION['cart'][0] = array('product_name'=>$_POST['product_name'], 'descr'=>$_POST['descr'], 'total'=>$total, 'Price'=>$_POST['price'], 'id'=>$_POST['id'], 'Quantity'=>1);
             echo"<script>
-            alert('Item already added');
-            window.location.href='../shop_1.php';
+            alert('Item added successfuly');
+            window.location.href='../cart.php';
         </script>";
         }
     }
+    if(isset($_POST['Remove'])){
+        foreach($_SESSION['cart'] as $key=> $value){
+            if($value['id'] == $_POST['product_id']){
+                unset( $_SESSION['cart'][$key]);
+                $_SESSION['cart'] = array_values($_SESSION['cart']);
+                echo"<script>
+                alert('Item Removed');
+                window.location.href='../cart.php';
+            </script>";
+            }
+        }
+    }
 }
-
-
-
-
-// if(isset($_GET['id'])){
-    
-// include_once'dbh.php';
-//     $sql = "SELECT * FROM products WHERE id = $_GET[id]";
-//     $result = mysqli_query($conn, $sql);
-//     $resultCheck = mysqli_num_rows($result);
-
-//     if($resultCheck >0) {
-//         while($row = mysqli_fetch_assoc($result)){
-
-//     }
-//    header("Location: ../shop_1.php");
-
-//     }
-// }
